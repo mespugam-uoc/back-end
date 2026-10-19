@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Inicio | Biblioteca</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<nav>
+  <strong>BIBLIOTECA</strong>
+  <a href="/">Inicio</a>
+  <a href="/libros">Libros</a>
+  <a href="/usuarios">Usuarios</a>
+  <a href="/prestamos">Préstamos</a>
+</nav>
+
+<main class="container">
+
+  <h1>Gestión de Biblioteca</h1>
+  <p class="subtitle">Panel de administración</p>
+
+  <section class="cards">
+
+    <div class="card">
+      <h2>LIBROS</h2>
+      <div class="number" th:text="${totalLibros}">0</div>
+      <a href="/libros">Ver libros →</a>
+    </div>
+
+    <div class="card">
+      <h2>USUARIOS</h2>
+      <div class="number" th:text="${totalUsuarios}">0</div>
+      <a href="/usuarios">Ver usuarios →</a>
+    </div>
+
+    <div class="card">
+      <h2>PRÉSTAMOS</h2>
+      <div class="number" th:text="${totalPrestamos}">0</div>
+      <a href="/prestamos">Ver préstamos →</a>
+    </div>
+
+  </section>
+
+</main>
+
+</body>
+</html>

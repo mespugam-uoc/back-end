@@ -1,14 +1,36 @@
 package com.marc.biblioteca.controller;
 
+import com.marc.biblioteca.repository.LibroRepository;
+import com.marc.biblioteca.repository.PrestamoRepository;
+import com.marc.biblioteca.repository.UsuarioRepository;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller
 public class HomeController {
 
+    private final LibroRepository libroRepository;
+    private final UsuarioRepository usuarioRepository;
+    private final PrestamoRepository prestamoRepository;
+
+    public HomeController(
+            LibroRepository libroRepository,
+            UsuarioRepository usuarioRepository,
+            PrestamoRepository prestamoRepository) {
+
+        this.libroRepository = libroRepository;
+        this.usuarioRepository = usuarioRepository;
+        this.prestamoRepository = prestamoRepository;
+    }
 
     @GetMapping("/")
-    public String home() {
-        return "Hello World - Biblioteca";
+    public String home(Model model) {
+
+        model.addAttribute("totalLibros", libroRepository.count());
+        model.addAttribute("totalUsuarios", usuarioRepository.count());
+        model.addAttribute("totalPrestamos", prestamoRepository.count());
+
+        return "index";
     }
 }

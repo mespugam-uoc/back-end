@@ -1,0 +1,41 @@
+services:
+
+  db:
+    image: mariadb:11
+    container_name: biblioteca-db
+
+    environment:
+      MARIADB_DATABASE: biblioteca
+      MARIADB_USER: biblioteca
+      MARIADB_PASSWORD: biblioteca
+      MARIADB_ROOT_PASSWORD: root
+
+    volumes:
+      - biblioteca_data:/var/lib/mysql
+
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+
+  app:
+    build: .
+    container_name: biblioteca-app
+
+    ports:
+      - "8080:8080"
+
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mariadb://db:3306/biblioteca
+      SPRING_DATASOURCE_USERNAME: biblioteca
+      SPRING_DATASOURCE_PASSWORD: biblioteca
+
+    depends_on:
+      db:
+        condition: service_healthy
+
+
+volumes:
+  biblioteca_data:
