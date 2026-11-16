@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<body>
+<nav th:fragment="nav">
+  <strong>BIBLIOTECA</strong>
+  <a th:href="${esAdmin ? '/admin/inicio' : '/user/inicio'}">Inicio</a>
+  <a th:href="${esAdmin ? '/admin/libros' : '/user/libros'}">Libros</a>
+  <a th:if="${esAdmin}" th:href="@{/admin/usuarios}">Usuarios</a>
+  <a th:href="${esAdmin ? '/admin/prestamos' : '/user/prestamos'}" th:text="${esAdmin ? 'Préstamos' : 'Mis préstamos'}">Préstamos</a>
+  <form class="logout-form" th:action="@{/logout}" method="post">
+    <button type="submit" class="btn btn-secondary">Cerrar sesión</button>
+  </form>
+</nav>
+</body>
+</html>

@@ -187,3 +187,19 @@ tbody tr:hover {
     display: flex;
     gap: 10px;
 }
+.form-group input[type="email"],
+.form-group input[type="password"] {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+.logout-form { display: inline-block; margin-left: auto; }
+.error { color: #a32222; }
+@media (max-width: 700px) {
+    .cards { grid-template-columns: 1fr; }
+    nav { flex-wrap: wrap; gap: 12px; }
+    .container { overflow-x: auto; }
+}

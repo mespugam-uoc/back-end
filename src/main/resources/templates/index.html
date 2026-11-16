@@ -8,13 +8,7 @@
 
 <body>
 
-<nav>
-  <strong>BIBLIOTECA</strong>
-  <a href="/">Inicio</a>
-  <a href="/libros">Libros</a>
-  <a href="/usuarios">Usuarios</a>
-  <a href="/prestamos">Préstamos</a>
-</nav>
+<nav th:replace="~{fragments/nav :: nav}"></nav>
 
 <main class="container">
 
@@ -26,19 +20,19 @@
     <div class="card">
       <h2>LIBROS</h2>
       <div class="number" th:text="${totalLibros}">0</div>
-      <a href="/libros">Ver libros →</a>
+      <a href="/admin/libros">Ver libros →</a>
     </div>
 
     <div class="card">
       <h2>USUARIOS</h2>
       <div class="number" th:text="${totalUsuarios}">0</div>
-      <a href="/usuarios">Ver usuarios →</a>
+      <a href="/admin/usuarios">Ver usuarios →</a>
     </div>
 
     <div class="card">
       <h2>PRÉSTAMOS</h2>
       <div class="number" th:text="${totalPrestamos}">0</div>
-      <a href="/prestamos">Ver préstamos →</a>
+      <a href="/admin/prestamos">Ver préstamos →</a>
     </div>
 
   </section>

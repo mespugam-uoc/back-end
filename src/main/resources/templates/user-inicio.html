@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Inicio | Biblioteca</title><link rel="stylesheet" th:href="@{/css/style.css}"></head>
+<body><nav th:replace="~{fragments/nav :: nav}"></nav>
+<main class="container"><h1>Mi biblioteca</h1><p class="subtitle">Consulta el catálogo y tus préstamos</p>
+<section class="cards"><div class="card"><h2>LIBROS</h2><div class="number" th:text="${totalLibros}">0</div><a th:href="@{/user/libros}">Ver catálogo →</a></div>
+<div class="card"><h2>MIS PRÉSTAMOS</h2><div class="number" th:text="${totalPrestamos}">0</div><a th:href="@{/user/prestamos}">Ver mis préstamos →</a></div></section>
+</main></body></html>

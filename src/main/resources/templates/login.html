@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Iniciar sesión | Biblioteca</title><link rel="stylesheet" th:href="@{/css/style.css}"></head>
+<body>
+<nav><strong>BIBLIOTECA</strong><a th:href="@{/registro}">Registro</a></nav>
+<main class="container"><h1>Iniciar sesión</h1><p class="subtitle">Accede a tu biblioteca</p>
+<div class="form-card">
+<p role="alert" class="error" th:if="${param.error}">Credenciales incorrectas o cuenta desactivada.</p>
+<p role="status" th:if="${param.logout}">Has cerrado sesión correctamente.</p>
+<p role="status" th:if="${param.registrado}">Registro completado. Ya puedes iniciar sesión.</p>
+<form th:action="@{/login}" method="post">
+<div class="form-group"><label for="email">Email</label><input id="email" type="email" name="email" required autocomplete="username"></div>
+<div class="form-group"><label for="password">Contraseña</label><input id="password" type="password" name="password" required autocomplete="current-password"></div>
+<button class="btn" type="submit">Entrar</button>
+</form><p><a th:href="@{/registro}">Crear una cuenta</a></p>
+</div></main></body></html>

@@ -24,6 +24,27 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario")
     private List<Prestamo> prestamos = new ArrayList<>();
 
+    // Las cuentas del Producto 2 pueden no tener contraseña todavía.
+    @Column
+    private String password;
+
+    @Column(nullable = false)
+    private String rol = "USER";
+
+    @Column(nullable = false)
+    private boolean activo = true;
+
+    @OneToMany(mappedBy = "creadoPor")
+    private List<Libro> librosCreados = new ArrayList<>();
+
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
+    public String getRol() { return rol; }
+    public void setRol(String rol) { this.rol = rol; }
+    public boolean isActivo() { return activo; }
+    public void setActivo(boolean activo) { this.activo = activo; }
+    public List<Libro> getLibrosCreados() { return librosCreados; }
+
     public Usuario() {
     }
 

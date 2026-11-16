@@ -8,13 +8,7 @@
 
 <body>
 
-<nav>
-  <strong>BIBLIOTECA</strong>
-  <a href="/">Inicio</a>
-  <a href="/libros">Libros</a>
-  <a href="/usuarios">Usuarios</a>
-  <a href="/prestamos">Préstamos</a>
-</nav>
+<nav th:replace="~{fragments/nav :: nav}"></nav>
 
 <main class="container">
 
@@ -28,7 +22,7 @@
       <th>ID</th>
       <th>Nombre</th>
       <th>Email</th>
-      <th>Fecha de registro</th>
+      <th>Fecha de registro</th><th>Rol</th><th>Activo</th>
     </tr>
     </thead>
 
@@ -38,7 +32,7 @@
       <td th:text="${usuario.id}"></td>
       <td th:text="${usuario.nombre}"></td>
       <td th:text="${usuario.email}"></td>
-      <td th:text="${usuario.fechaRegistro}"></td>
+      <td th:text="${usuario.fechaRegistro}"></td><td th:text="${usuario.rol}"></td><td th:text="${usuario.activo ? 'Sí' : 'No'}"></td>
     </tr>
 
     </tbody>

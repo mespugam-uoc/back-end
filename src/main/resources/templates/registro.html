@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Registro | Biblioteca</title><link rel="stylesheet" th:href="@{/css/style.css}"></head>
+<body><nav><strong>BIBLIOTECA</strong><a th:href="@{/login}">Iniciar sesión</a></nav>
+<main class="container"><h1>Registro</h1><p class="subtitle">Crea tu cuenta de usuario</p><div class="form-card">
+<form th:action="@{/registro}" th:object="${registro}" method="post">
+<ul role="alert" class="error" th:if="${#fields.hasErrors('*')}"><li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li></ul>
+<div class="form-group"><label for="nombre">Nombre</label><input id="nombre" type="text" th:field="*{nombre}" maxlength="255" required autocomplete="name"></div>
+<div class="form-group"><label for="email">Email</label><input id="email" type="email" th:field="*{email}" maxlength="255" required autocomplete="username"></div>
+<div class="form-group"><label for="password">Contraseña (mínimo 8 caracteres)</label><input id="password" type="password" name="password" minlength="8" maxlength="72" required autocomplete="new-password"></div>
+<div class="form-group"><label for="confirmacion">Confirmar contraseña</label><input id="confirmacion" type="password" name="confirmacion" required autocomplete="new-password"></div>
+<button class="btn" type="submit">Registrarse</button>
+</form><p><a th:href="@{/login}">Ya tengo una cuenta</a></p>
+</div></main></body></html>

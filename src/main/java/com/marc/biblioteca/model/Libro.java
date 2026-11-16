@@ -1,6 +1,8 @@
 package com.marc.biblioteca.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,10 +14,15 @@ public class Libro {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "El título es obligatorio")
+    @Size(max = 255)
     private String titulo;
 
+    @NotBlank(message = "El autor es obligatorio")
+    @Size(max = 255)
     private String autor;
 
+    @Size(max = 255)
     @Column(unique = true)
     private String isbn;
 
@@ -23,6 +30,13 @@ public class Libro {
 
     @OneToMany(mappedBy = "libro")
     private List<Prestamo> prestamos = new ArrayList<>();
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "creado_por_id")
+    private Usuario creadoPor;
+
+    public Usuario getCreadoPor() { return creadoPor; }
+    public void setCreadoPor(Usuario creadoPor) { this.creadoPor = creadoPor; }
 
     public Libro() {
     }

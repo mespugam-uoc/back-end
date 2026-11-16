@@ -8,13 +8,7 @@
 
 <body>
 
-<nav>
-  <strong>BIBLIOTECA</strong>
-  <a href="/">Inicio</a>
-  <a href="/libros">Libros</a>
-  <a href="/usuarios">Usuarios</a>
-  <a href="/prestamos">Préstamos</a>
-</nav>
+<nav th:replace="~{fragments/nav :: nav}"></nav>
 
 <main class="container">
 
@@ -23,10 +17,11 @@
 
   <div class="form-card">
 
-    <form th:action="@{/libros/guardar}"
+    <form th:action="@{/admin/libros/guardar}"
           th:object="${libro}"
           method="post">
 
+      <ul class="error" th:if="${#fields.hasErrors('*')}"><li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li></ul>
       <input type="hidden" th:field="*{id}">
 
       <div class="form-group">
@@ -61,7 +56,7 @@
           Guardar
         </button>
 
-        <a class="btn btn-secondary" href="/libros">
+        <a class="btn btn-secondary" href="/admin/libros">
           Cancelar
         </a>
       </div>

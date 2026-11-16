@@ -8,13 +8,7 @@
 
 <body>
 
-<nav>
-    <strong>BIBLIOTECA</strong>
-    <a href="/">Inicio</a>
-    <a href="/libros">Libros</a>
-    <a href="/usuarios">Usuarios</a>
-    <a href="/prestamos">Préstamos</a>
-</nav>
+<nav th:replace="~{fragments/nav :: nav}"></nav>
 
 <main class="container">
 
@@ -24,11 +18,12 @@
             <p class="subtitle">Gestión del catálogo de la biblioteca</p>
         </div>
 
-        <a class="btn" href="/libros/nuevo">
+        <a th:if="${esAdmin}" class="btn" href="/admin/libros/nuevo">
             + Nuevo libro
         </a>
     </div>
 
+    <p role="alert" class="error" th:if="${error}" th:text="${error}"></p>
     <table>
         <thead>
         <tr>
@@ -37,7 +32,7 @@
             <th>Autor</th>
             <th>ISBN</th>
             <th>Estado</th>
-            <th>Acciones</th>
+            <th th:if="${esAdmin}">Acciones</th>
         </tr>
         </thead>
 
@@ -50,18 +45,15 @@
 
             <td th:text="${libro.disponible ? 'Disponible' : 'No disponible'}"></td>
 
-            <td>
+            <td th:if="${esAdmin}">
                 <div class="actions">
 
                     <a class="btn btn-secondary"
-                       th:href="@{/libros/editar/{id}(id=${libro.id})}">
+                       th:href="@{/admin/libros/editar/{id}(id=${libro.id})}">
                         Editar
                     </a>
 
-                    <a class="btn btn-danger"
-                       th:href="@{/libros/eliminar/{id}(id=${libro.id})}">
-                        Eliminar
-                    </a>
+                    <form th:action="@{/admin/libros/eliminar/{id}(id=${libro.id})}" method="post"><button type="submit" class="btn btn-danger">Eliminar</button></form>
 
                 </div>
             </td>
